@@ -26,7 +26,7 @@ class MercadolivreSpider(scrapy.Spider):
                } #categoriza o que eu quero dentro do bloco
         
         if self.count_page < self.max_page:
-            next_page = response.css('li.andes-pagination__button.andes-pagination__button--next a::attr(href)')
+            next_page = response.css('li.andes-pagination__button.andes-pagination__button--next a::attr(href)').get()
             if next_page:
                 self.count_page += 1
                 yield scrapy.Request(url=next_page, callback=self.parse)
